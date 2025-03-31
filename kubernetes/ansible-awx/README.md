@@ -1,6 +1,6 @@
 # Ansible AWX in Kubernetes
 
-Basic AWX (Ansible Tower) Kubernetes deployment with local Persistent Volume in Minikube using official AWX Operator used.
+Basic AWX (Ansible Tower) Kubernetes deployment with local Persistent Volume in Minikube using official AWX Operator.
 
 ## References
 
