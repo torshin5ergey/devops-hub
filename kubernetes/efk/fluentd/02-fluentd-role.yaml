@@ -1,3 +1,5 @@
+# === RBAC: Fluentd Cluster Role
+# Permission to read logs in cluster
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
@@ -8,13 +10,15 @@ metadata:
 rules:
   - apiGroups:
       - ""
-    resources:
+    resources: # what kind of resources
       - pods
       - namespaces
-    verbs:
+    verbs: # what to do with resources
       - get
       - list
       - watch
+# === RBAC: Fluentd Cluster Role Binding
+# Connect Service Account to Cluster Role
 ---
 kind: ClusterRoleBinding
 apiVersion: rbac.authorization.k8s.io/v1

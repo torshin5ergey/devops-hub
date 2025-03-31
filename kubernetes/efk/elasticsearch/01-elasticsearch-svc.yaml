@@ -1,3 +1,4 @@
+# === Elasticsearch Headless Service ===
 ---
 kind: Service
 apiVersion: v1
@@ -9,9 +10,9 @@ metadata:
 spec:
   selector:
     app: elasticsearch
-  clusterIP: None
+  clusterIP: None # headless
   ports:
-    - port: 9200
+    - port: 9200 # REST API port
       name: rest
     - port: 9300
       name: inter-node

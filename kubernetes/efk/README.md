@@ -11,8 +11,28 @@ Basic EFK Kubernetes deployment with local Persistent Volume in Minikube.
 - Kubernetes cluster(Minikube)
 - `kubectl` access
 
-## Deploying
+## Deploy
 
+### Automatic
+
+1. Check config [`03-fluent-cm.yaml`](/kubernetes/efk/fluentd/03-fluentd-cm.yaml) and [`04-fluentd-ds.yaml`](/kubernetes/efk/fluentd/04-fluentd-ds.yaml)
+2. Prepare storage (minikube example)
+- Create storage directory
+```bash
+# connect to minikube
+minikube ssh
+# create storage
+mkdir /mnt/data-elasticsearch
+chown -R 1000:1000 /mnt/data-elasticsearch
+chmod -R 755 /mnt/data-elasticsearch
+```
+- Change path to directory in [`01-elasticsearch-pv.yaml`](/kubernetes/efk/elasticsearch/02-elasticsearch-pv.yaml)
+3. Run deploy script from this directory
+```bash
+./efk-install.sh
+```
+
+### Step-by-Step
 1. Create ns
 ```bash
 kubectl apply -f 00-namespace.yaml
@@ -20,11 +40,11 @@ kubectl apply -f 00-namespace.yaml
 
 2. Prepare storage (for minikube)
 ```bash
-# connecto to minikube
+# connect to minikube
 minikube ssh
 # create storage
 mkdir /mnt/data-elasticsearch
-chown -R 1000:1000 /mnt/awx-storage # uid/gid 26 postgres user/group in container
+chown -R 1000:1000 /mnt/data-elasticsearch
 chmod -R 755 /mnt/data-elasticsearch
 ```
 
@@ -43,6 +63,7 @@ kubectl rollout status deploy kibana -n efk-logging
 ```
 
 5. Deploy Fluentd
+Check config
 ```bash
 kubectl apply -f fluentd/
 # chack status

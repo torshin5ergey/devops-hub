@@ -1,3 +1,4 @@
+# === Kibana Service ClusterIP===
 ---
 apiVersion: v1
 kind: Service
@@ -8,9 +9,10 @@ metadata:
     app: kibana
 spec:
   ports:
-    - port: 5601
+    - port: 5601 # default Kibana port
   selector:
     app: kibana
+# === Kibana NodePort ===
 ---
 apiVersion: v1
 kind: Service

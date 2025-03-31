@@ -1,3 +1,5 @@
+# === RBAC: Fluentd Service Account ===
+# Access to Kubernetes API
 ---
 apiVersion: v1
 kind: ServiceAccount

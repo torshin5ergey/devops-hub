@@ -1,3 +1,4 @@
+# === Elasticsearch StatefulSet ===
 ---
 apiVersion: apps/v1
 kind: StatefulSet
@@ -5,7 +6,7 @@ metadata:
   name: es-cluster
   namespace: efk-logging
 spec:
-  serviceName: elasticsearch
+  serviceName: elasticsearch # connected to headless service
   replicas: 1
   selector:
     matchLabels:
@@ -35,7 +36,7 @@ spec:
               mountPath: /usr/share/elasticsearch/data
           env:
             - name: cluster.name
-              value: k8s-logs
+              value: k8s-logs # ! CUSTOMIZE: efk cluster name
             - name: node.name
               valueFrom:
                 fieldRef:
@@ -74,7 +75,7 @@ spec:
                   - key: kubernetes.io/hostname
                     operator: In
                     values:
-                      - minikube
+                      - minikube # ! CUSTOMIZE: node name
   volumeClaimTemplates:
     - metadata:
         name: data-elasticsearch
@@ -83,7 +84,7 @@ spec:
           app: elasticsearch
       spec:
         accessModes: ["ReadWriteOnce"]
-        storageClassName: "local-storage"
+        storageClassName: "local-storage" # match pv
         resources:
           requests:
-            storage: 8Gi
+            storage: 8Gi # ! CUSTOMIZE: match pv
