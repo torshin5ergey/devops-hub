@@ -1,0 +1,29 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kibana
+  namespace: efk-logging
+  labels:
+    app: kibana
+spec:
+  ports:
+    - port: 5601
+  selector:
+    app: kibana
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kibana-nodeport
+  namespace: efk-logging
+  labels:
+    app: kibana
+spec:
+  type: NodePort
+  ports:
+    - port: 5601
+      targetPort: 5601
+      nodePort: 30601
+  selector:
+    app: kibana
