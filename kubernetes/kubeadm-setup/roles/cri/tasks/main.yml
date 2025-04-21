@@ -2,12 +2,12 @@
 - name: Add Docker repo
   ansible.builtin.include_tasks: add_docker_repo.yaml
   tags: docker_gpg
-  when: var_cri == "docker"
+  when: cri_var_cri == "docker"
 
 - name: Install Docker
   ansible.builtin.include_tasks: install_docker.yaml
   tags: docker_install
-  when: var_cri == "docker"
+  when: cri_var_cri == "docker"
 
 - name: Setup containerd confiduration
   ansible.builtin.include_tasks: config_containerd.yaml

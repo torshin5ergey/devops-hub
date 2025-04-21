@@ -3,4 +3,4 @@
 # Options:
 #   - docker
 #   - containerd
-var_cri: docker
+cri_var_cri: "docker"
