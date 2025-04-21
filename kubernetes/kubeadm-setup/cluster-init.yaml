@@ -9,6 +9,7 @@
   hosts: all
   become: true
   vars:
+    # ! CUSTOMIZE
     var_cri: "docker"
   roles:
     - cri
