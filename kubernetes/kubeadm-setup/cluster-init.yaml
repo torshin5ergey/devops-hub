@@ -13,3 +13,19 @@
     cri_var_cri: "docker"
   roles:
     - cri
+
+- name: Initialize control plane
+  hosts: control
+  become: true
+  vars:
+    # ! CUSTOMIZE
+    var_k8s_version: "1.32.3"
+  tasks:
+    - name: Run kubeadm init
+      ansible.builtin.command: |
+        kubeadm init \
+          --kubernetes-version v{{ var_k8s_version }}
+      register: kubeadm_init
+      changed_when: "'initialized' in kubeadm_init.stdout"
+    # TODO: Add post init task
+    # TODO: Save join command
