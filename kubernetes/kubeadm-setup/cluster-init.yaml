@@ -3,4 +3,12 @@
   hosts: all
   become: true
   roles:
-    - role: common
+    - common
+
+- name: Install container runtime
+  hosts: all
+  become: true
+  vars:
+    var_cri: "docker"
+  roles:
+    - cri

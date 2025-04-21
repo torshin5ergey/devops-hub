@@ -1,0 +1,6 @@
+---
+# ! CUSTOMIZE
+# Options:
+#   - docker
+#   - containerd
+var_cri: docker
