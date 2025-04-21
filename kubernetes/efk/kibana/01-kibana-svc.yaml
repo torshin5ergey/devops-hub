@@ -1,4 +1,4 @@
-# === Kibana Service ClusterIP===
+# === Kibana Service ClusterIP ===
 ---
 apiVersion: v1
 kind: Service

@@ -1,4 +1,4 @@
-# === RBAC: Fluentd Cluster Role
+# === RBAC: Fluentd Cluster Role ===
 # Permission to read logs in cluster
 ---
 apiVersion: rbac.authorization.k8s.io/v1
@@ -17,7 +17,7 @@ rules:
       - get
       - list
       - watch
-# === RBAC: Fluentd Cluster Role Binding
+# === RBAC: Fluentd Cluster Role Binding ===
 # Connect Service Account to Cluster Role
 ---
 kind: ClusterRoleBinding
