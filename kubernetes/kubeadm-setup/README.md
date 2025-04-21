@@ -73,7 +73,7 @@ free -m
   - `6782/tcp` Weave Net metrics
   - `179/tcp` Calico BGP
 
-## Enable IPv4 Packer Forwarding (all nodes)
+### Enable IPv4 Packer Forwarding (all nodes)
 
 - Add IPv4 packet forwarding to sysctl configuration
 ```bash
@@ -159,7 +159,7 @@ KUBELET_KUBEADM_ARGS="--node-ip=123.45.67.89 ..."
 systemctl restart kubelet
 ```
 
-### Install Pod Network Add-on Plugin
+### Install Pod Network Add-on Plugin (control plane)
 
 #### Weave Net
 
