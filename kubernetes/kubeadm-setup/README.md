@@ -31,10 +31,13 @@ Tested with:
 
 ## Quickstart
 
-Docker + Calico
+- Setup [`inventory.ini`](/kubernetes/kubeadm-setup/inventory/inventory.ini)
+- Customize variables in playbook [`cluster-init.yaml`](/kubernetes/kubeadm-setup/cluster-init.yaml) if needed (CRI: Docker, containerd; CNI: Weave Net, Calico)
+- Run playbook
 ```bash
-ansible-playbook -i inventory.ini kubernetes/kubeadm-setup/docker/calico/playbook.yaml
+ansible-playbook kubernetes/kubeadm-setup/cluster-init.yaml
 ```
+- Join nodes. The `kubeadm join` command is in `kubeadm_join.sh` inside `ansible_user` $HOME directory.
 
 ## Manual Installation
 
