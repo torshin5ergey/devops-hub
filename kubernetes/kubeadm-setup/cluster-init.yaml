@@ -29,11 +29,13 @@
   vars:
     # ! CUSTOMIZE
     var_k8s_version: "1.32.3"
+    var_cidr: "10.10.0.0/16" # for now works only with Calico
   tasks:
     - name: Run kubeadm init
       ansible.builtin.command: |
         kubeadm init \
-          --kubernetes-version v{{ var_k8s_version }}
+          --kubernetes-version v{{ var_k8s_version }} \
+          --pod-network-cidr={{ var_cidr }}
       register: kubeadm_init
       changed_when: "'initialized successfully!' in kubeadm_init.stdout"
 
@@ -41,6 +43,8 @@
       ansible.builtin.file:
         path: "/home/{{ ansible_user }}/.kube"
         state: directory
+        owner: "{{ ansible_user }}"
+        group: "{{ ansible_user }}"
         mode: "0755"
 
     - name: Copy admin config
@@ -48,13 +52,9 @@
         src: /etc/kubernetes/admin.conf
         dest: "/home/{{ ansible_user }}/.kube/config"
         remote_src: true
-        mode: "0600"
-
-    - name: Fix config ownership
-      ansible.builtin.file:
-        path: "/home/{{ ansible_user }}/.kube/config"
         owner: "{{ ansible_user }}"
         group: "{{ ansible_user }}"
+        mode: "0600"
 
     - name: Extract join command
       ansible.builtin.set_fact:
@@ -69,4 +69,11 @@
         mode: "0755"
       when: join_command is defined
 
-# - name: Install CNI plugin
+- name: Install CNI Plugin
+  hosts: controller
+  become: false
+  vars:
+    # ! CUSTOMIZE
+    cni_var_cni: "calico"
+  roles:
+    - cni
