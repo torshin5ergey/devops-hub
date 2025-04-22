@@ -36,8 +36,31 @@
           --kubernetes-version v{{ var_k8s_version }}
       register: kubeadm_init
       changed_when: "'initialized' in kubeadm_init.stdout"
-    # TODO: Add post init task
-    # TODO: Save join command
+
+    - name: Extract kubeadm join command
+      ansible.builtin.set_fact:
+        join_command: "{{ kubeadm_init.stdout_lines | select('search', '--token') | list | first | regex_replace('\\\\s+', ' ') }}"
+      when: kubeadm_init.stdout is search('--token')
+
+    - name: Save join command to file
+      ansible.builtin.copy:
+        content: "{{ join_command }}"
+        dest: /tmp/join_command.sh
+        mode: "0755"
+      when: join_command is defined
+
+    - name: Create .kube directory for current user
+      ansible.builtin.file:
+        path: "{{ ansible_env.HOME }}/.kube"
+        state: directory
+        mode: "0700"
+
+    - name: Copy admin.conf to user's kube config
+      ansible.builtin.copy:
+        src: /etc/kubernetes/admin.conf
+        dest: "{{ ansible_env.HOME }}/.kube/config"
+        remote_src: true
+        mode: "0600"
 
 - name: Install CNI plugin
   hosts: control
