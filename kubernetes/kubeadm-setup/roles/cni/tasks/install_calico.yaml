@@ -1,9 +1,5 @@
 ---
-- name: Apply Weave Net manifest
-  ansible.builtin.command: "kubectl apply -f https://github.com/weaveworks/weave/releases/download/v2.8.1/weave-daemonset-k8s.yaml"
+- name: Apply Calico manifest
+  ansible.builtin.command: "kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml"
   register: kubectl_output
   changed_when: kubectl_output.rc != 0
-
-- name: Print result
-  ansible.builtin.debug:
-  var: kubectl_output.stdout
