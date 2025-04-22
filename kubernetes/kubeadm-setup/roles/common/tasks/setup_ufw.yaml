@@ -5,4 +5,4 @@
     rule: allow
     port: "{{ item.port }}"
     proto: "{{ item.proto | default('tcp') }}"
-  loop: "{{ var_ufw_rules }}"
+  loop: "{{ common_var_ufw_rules }}"
