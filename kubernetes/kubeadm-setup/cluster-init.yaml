@@ -24,7 +24,7 @@
     - kube-components
 
 - name: Initialize control plane
-  hosts: control
+  hosts: controllers
   become: true
   vars:
     # ! CUSTOMIZE
@@ -35,38 +35,38 @@
         kubeadm init \
           --kubernetes-version v{{ var_k8s_version }}
       register: kubeadm_init
-      changed_when: "'initialized' in kubeadm_init.stdout"
+      changed_when: "'initialized successfully!' in kubeadm_init.stdout"
 
-    - name: Extract kubeadm join command
-      ansible.builtin.set_fact:
-        join_command: "{{ kubeadm_init.stdout_lines | select('search', '--token') | list | first | regex_replace('\\\\s+', ' ') }}"
-      when: kubeadm_init.stdout is search('--token')
-
-    - name: Save join command to file
-      ansible.builtin.copy:
-        content: "{{ join_command }}"
-        dest: /tmp/join_command.sh
-        mode: "0755"
-      when: join_command is defined
-
-    - name: Create .kube directory for current user
+    - name: Create .kube directory
       ansible.builtin.file:
-        path: "{{ ansible_env.HOME }}/.kube"
+        path: "/home/{{ ansible_user }}/.kube"
         state: directory
-        mode: "0700"
+        mode: "0755"
 
-    - name: Copy admin.conf to user's kube config
+    - name: Copy admin config
       ansible.builtin.copy:
         src: /etc/kubernetes/admin.conf
-        dest: "{{ ansible_env.HOME }}/.kube/config"
+        dest: "/home/{{ ansible_user }}/.kube/config"
         remote_src: true
         mode: "0600"
 
-- name: Install CNI plugin
-  hosts: control
-  become: true
-  vars:
-    # ! CUSTOMIZE
-    cri_var_cri: "docker"
-  roles:
-    - cri
+    - name: Fix config ownership
+      ansible.builtin.file:
+        path: "/home/{{ ansible_user }}/.kube/config"
+        owner: "{{ ansible_user }}"
+        group: "{{ ansible_user }}"
+
+    - name: Extract join command
+      ansible.builtin.set_fact:
+        join_command: "{{ kubeadm_init.stdout | regex_search('kubeadm join[\\S\\s]*sha256:[a-f0-9]{64}') }}"
+
+    - name: Save join command to file
+      ansible.builtin.copy:
+        dest: "/home/{{ ansible_user }}/kubeadm_join.sh"
+        content: |
+          #!/bin/bash
+          {{ join_command }}
+        mode: "0755"
+      when: join_command is defined
+
+# - name: Install CNI plugin
