@@ -21,7 +21,9 @@ Ansible plabooks and manual steps to set up a Kubernetes lcuster using `kubeadm`
 
 ## Prerequisites
 
-Tested on:
+Ansible inventory with `controller`, `workers` groups.
+
+Tested with:
 - Ubuntu 22.04 Server nodes (1 master, N workers)
 - Ansible 2.17.10
 - Weave Net 2.8.1
