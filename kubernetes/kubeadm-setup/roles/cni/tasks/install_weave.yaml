@@ -6,4 +6,4 @@
 
 - name: Print result
   ansible.builtin.debug:
-  var: kubectl_output.stdout
+    var: kubectl_output.stdout
