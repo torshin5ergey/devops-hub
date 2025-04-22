@@ -14,6 +14,15 @@
   roles:
     - cri
 
+- name: Install kubernetes components
+  hosts: all
+  become: true
+  vars:
+    # ! CUSTOMIZE
+    kube_components_var_k8s_version: "1.32"
+  roles:
+    - kube-components
+
 - name: Initialize control plane
   hosts: control
   become: true
@@ -29,3 +38,12 @@
       changed_when: "'initialized' in kubeadm_init.stdout"
     # TODO: Add post init task
     # TODO: Save join command
+
+- name: Install CNI plugin
+  hosts: control
+  become: true
+  vars:
+    # ! CUSTOMIZE
+    cri_var_cri: "docker"
+  roles:
+    - cri
