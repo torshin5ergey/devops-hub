@@ -13,3 +13,5 @@ DevOps templates
 
 - [kubernetes](./kubernetes/)
   - [ansible awx](./kubernetes/ansible-awx/)
+  - [efk](./kubernetes/efk/)
+  - [kubeadm-setup](./kubernetes/kubeadm-setup/)
