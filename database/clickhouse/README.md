@@ -4,9 +4,10 @@ Basic ClickHouse native install.
 
 **Table of Contents:**
 - [References](#references)
-- [Kubernetes installation](#kubernetes-installation)
+- [Kubernetes Deployment](#kubernetes-deployment)
 - [Native Installation](#native-installation)
   - [RedHat (AlmaLinux)](#redhat-almalinux)
+- [Basic Commands](#basic-commands)
 - [Author](#author)
 
 ## References
@@ -14,7 +15,7 @@ Basic ClickHouse native install.
 - https://clickhouse.com/docs/install
 - https://clickhouse.com/docs/interfaces/cli
 
-## Kubernetes installation
+## [Kubernetes Deployment](/database/clickhouse/k8s/README.md)
 
 ## Native Installation
 
@@ -50,6 +51,21 @@ sudo systemctl status clickhouse-server
 # --database <database>
 # --query <query>
 clickhouse-client # localhost:9000 user:default
+```
+
+## Basic Commands
+
+- Show databases
+```sql
+SHOW DATABASES; -- \l
+```
+- Show tables
+```sql
+SHOW TABLES; -- \d
+```
+- Use database
+```sql
+USE database_name; -- \c <DATABASE>
 ```
 
 ## Author
