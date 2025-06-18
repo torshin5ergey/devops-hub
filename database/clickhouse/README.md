@@ -1,10 +1,11 @@
 # ClickHouse
 
-Basic ClickHouse local install.
+Basic ClickHouse native install.
 
 ## References
 
 - https://clickhouse.com/docs/install
+- https://clickhouse.com/docs/interfaces/cli
 
 ## RedHat (AlmaLinux)
 
@@ -31,5 +32,11 @@ sudo systemctl status clickhouse-server
 
 4. Connect via client
 ```bash
-clickhouse-client
+# --host <host>
+# --port <port>
+# --user <user>
+# --password <password>
+# --database <database>
+# --query <query>
+clickhouse-client # localhost:9000 user:default
 ```
