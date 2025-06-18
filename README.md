@@ -8,7 +8,7 @@
 ![Ansible](https://img.shields.io/badge/ansible-%231A1918.svg?logo=ansible&logoColor=white)
 ![ClickHouse](https://img.shields.io/badge/clickhouse-%23005571.svg?logo=clickhouse&logoColor=white)
 
-DevOps templates
+DevOps deploy templates and configurations
 
 ## Repo Structure
 
@@ -20,3 +20,7 @@ DevOps templates
   - [ansible awx](./kubernetes/ansible-awx/)
   - [efk](./kubernetes/efk/)
   - [kubeadm setup](./kubernetes/kubeadm-setup/)
+
+## Author
+
+Sergey Torshin [@torshin5ergey](https://github.com/torshin5ergey)

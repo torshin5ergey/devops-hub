@@ -2,12 +2,23 @@
 
 Basic ClickHouse native install.
 
+**Table of Contents:**
+- [References](#references)
+- [Kubernetes installation](#kubernetes-installation)
+- [Native Installation](#native-installation)
+  - [RedHat (AlmaLinux)](#redhat-almalinux)
+- [Author](#author)
+
 ## References
 
 - https://clickhouse.com/docs/install
 - https://clickhouse.com/docs/interfaces/cli
 
-## RedHat (AlmaLinux)
+## Kubernetes installation
+
+## Native Installation
+
+### RedHat (AlmaLinux)
 
 1. Add RPM repository
 ```bash
@@ -40,3 +51,7 @@ sudo systemctl status clickhouse-server
 # --query <query>
 clickhouse-client # localhost:9000 user:default
 ```
+
+## Author
+
+Sergey Torshin [@torshin5ergey](https://github.com/torshin5ergey)
