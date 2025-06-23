@@ -14,8 +14,9 @@ DevOps deploy templates and configurations
 
 - [database](/database/)
   - [clickhouse](./database/clickhouse/)
-  - [postgresql]
-  - [redis]
+  - [postgresql]()
+  - [redis](./database/redis/)
+    - [redisinsight](./database/redis/redisinsight/)
 - [kubernetes](./kubernetes/)
   - [ansible awx](./kubernetes/ansible-awx/)
   - [efk](./kubernetes/efk/)
