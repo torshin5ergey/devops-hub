@@ -4,7 +4,7 @@ Basic ClickHouse native install.
 
 **Table of Contents:**
 - [References](#references)
-- [Kubernetes Deployment](#kubernetes-deployment)
+- [Kubernetes Deploy](#kubernetes-deploy)
 - [Native Installation](#native-installation)
   - [RedHat (AlmaLinux)](#redhat-almalinux)
 - [Basic Commands](#basic-commands)
@@ -15,7 +15,7 @@ Basic ClickHouse native install.
 - https://clickhouse.com/docs/install
 - https://clickhouse.com/docs/interfaces/cli
 
-## [Kubernetes Deployment](/database/clickhouse/k8s/README.md)
+## [Kubernetes Deploy](/database/clickhouse/k8s/)
 
 ## Native Installation
 
