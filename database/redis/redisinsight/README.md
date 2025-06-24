@@ -50,7 +50,7 @@ docker run -d \
     "username": "default",
     "password": "",
     "db": 1,
-    "ssl": true
+    "tls": true
   },
   ...
 ]
