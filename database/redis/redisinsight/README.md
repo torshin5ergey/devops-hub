@@ -9,7 +9,7 @@
 
 ## Docker Deploy
 
-### Simple deploy
+### Basic deploy
 
 - Run Docker container
 ```bash
@@ -33,7 +33,16 @@ docker run -d \
 ```
 - Access with web browser `http://localhost:5540`
 
+## [Kubernetes Deploy](/database/redis/redisinsight/k8s/)
+
 ## Configuration
+
+### Environment Variables
+
+- `RI_STDOUT_LOGGER`: Logs to stdout
+  `true` | `false`
+- `RI_LOG_LEVEL`: Log level
+  `debug` | `warn` | `info`
 
 ### Preconfigure database connections
 
@@ -50,7 +59,7 @@ docker run -d \
     "username": "default",
     "password": "",
     "db": 1,
-    "tls": true
+    "tls": false
   },
   ...
 ]
