@@ -1,6 +1,6 @@
 # ClickHouse
 
-Basic ClickHouse native install.
+Basic ClickHouse deploy.
 
 **Table of Contents:**
 - [References](#references)
