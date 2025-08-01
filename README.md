@@ -13,14 +13,18 @@ DevOps deploy templates and configurations
 ## Repo Structure
 
 - [database](/database/)
-  - [clickhouse](./database/clickhouse/)
+  - [clickhouse](/database/clickhouse/)
   - [postgresql]()
-  - [redis](./database/redis/)
-    - [redisinsight](./database/redis/redisinsight/)
-- [kubernetes](./kubernetes/)
-  - [ansible awx](./kubernetes/ansible-awx/)
-  - [efk](./kubernetes/efk/)
-  - [kubeadm setup](./kubernetes/kubeadm-setup/)
+  - [redis](/database/redis/)
+    - [redisinsight](/database/redis/redisinsight/)
+- [kubernetes](/kubernetes/)
+  - [ansible awx](/kubernetes/ansible-awx/)
+  - [efk](/kubernetes/efk/)
+  - [ingress-nginx](/kubernetes/ingress-nginx/)
+  - [kind](/kubernetes/kind/)
+  - [kubeadm setup](/kubernetes/kubeadm-setup/)
+- [webserver](/webserver/)
+  - [nginx](/webserver/nginx/)
 
 ## Author
 
