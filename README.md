@@ -7,6 +7,9 @@
 ![Kubernetes](https://img.shields.io/badge/kubernetes-%23326ce5.svg?logo=kubernetes&logoColor=white)
 ![Ansible](https://img.shields.io/badge/ansible-%231A1918.svg?logo=ansible&logoColor=white)
 ![ClickHouse](https://img.shields.io/badge/clickhouse-%23005571.svg?logo=clickhouse&logoColor=white)
+![Redis](https://img.shields.io/badge/redis-%23DC382D.svg?logo=redis&logoColor=white)
+![Kind](https://img.shields.io/badge/kind-%23326ce5.svg?logo=kubernetes&logoColor=white)
+![Nginx](https://img.shields.io/badge/nginx-%23009639.svg?logo=nginx&logoColor=white)
 
 DevOps deploy templates and configurations
 
