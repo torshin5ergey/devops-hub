@@ -40,6 +40,13 @@ spec:
             - "--bootstrap-admin-username=${KEYCLOAK_ADMIN}"
             - "--bootstrap-admin-password=${KEYCLOAK_ADMIN_PASSWORD}"
             # - "--optimized"
+          resources:
+            requests:
+              memory: "1Gi"
+              cpu: "500m"
+            limits:
+              memory: "2Gi"
+              cpu: "1000m"
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -65,6 +72,13 @@ spec:
               value: keycloak
           ports:
             - containerPort: 3306
+          resources:
+            requests:
+              memory: "512Mi"
+              cpu: "250m"
+            limits:
+              memory: "1Gi"
+              cpu: "500m"
           volumeMounts:
             - name: mysql-storage
               mountPath: /var/lib/mysql
