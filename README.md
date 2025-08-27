@@ -26,6 +26,8 @@ DevOps deploy templates and configurations
   - [ingress-nginx](/kubernetes/ingress-nginx/)
   - [kind](/kubernetes/kind/)
   - [kubeadm setup](/kubernetes/kubeadm-setup/)
+- [security](/security/)
+  - [keycloak](/security/keycloak/)
 - [webserver](/webserver/)
   - [nginx](/webserver/nginx/)
 
