@@ -1,0 +1,73 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: keycloak
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: keycloak
+  template:
+    metadata:
+      labels:
+        app: keycloak
+    spec:
+      containers:
+        - name: keycloak
+          image: quay.io/keycloak/keycloak:26.3.2
+          imagePullPolicy: Never
+          env:
+            - name: KC_DB_URL
+              value: "jdbc:mysql://mysql:3306/keycloak"
+            - name: KC_DB
+              value: "mysql"
+            - name: KC_DB_USERNAME
+              value: "root"
+            - name: KC_DB_PASSWORD
+              value: "rootpass"
+            - name: KEYCLOAK_ADMIN
+              value: "bootstrap-admin"
+            - name: KEYCLOAK_ADMIN_PASSWORD
+              value: "qwerty"
+          ports:
+            - containerPort: 8080
+          args:
+            - "start"
+            - "--http-enabled=true"
+            - "--hostname=localhost"
+            - "--hostname-strict=true"
+            - "--bootstrap-admin-username=${KEYCLOAK_ADMIN}"
+            - "--bootstrap-admin-password=${KEYCLOAK_ADMIN_PASSWORD}"
+            # - "--optimized"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql
+  template:
+    metadata:
+      labels:
+        app: mysql
+    spec:
+      containers:
+        - name: mysql
+          image: mysql:8.0
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: rootpass
+            - name: MYSQL_DATABASE
+              value: keycloak
+          ports:
+            - containerPort: 3306
+          volumeMounts:
+            - name: mysql-storage
+              mountPath: /var/lib/mysql
+      volumes:
+        - name: mysql-storage
+          emptyDir: {}
