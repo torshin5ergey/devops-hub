@@ -3,6 +3,7 @@
 ## References
 
 - [Installing on RPM-based Linux (RHEL, CentOS Stream, Fedora, Amazon Linux 2023)](https://www.rabbitmq.com/docs/install-rpm)
+- [Troubleshooting OAuth 2](https://www.rabbitmq.com/docs/troubleshooting-oauth2)
 
 ## Native Installation
 
@@ -129,6 +130,13 @@ rabbitmqctl set_user_tags admin administrator
 rabbitmqctl set_permissions -p / admin ".*" ".*" ".*"
 ```
 - Access with web browser `http://localhost:15672`
+
+### RabbitMQ Setup with Keycloak as OAuth 2.0 server
+
+- Install `rabbitmq_auth_backend_oauth2` plugin
+```bash
+rabbitmq-plugins enable rabbitmq_auth_backend_oauth2
+```
 
 ## Author
 
