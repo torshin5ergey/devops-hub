@@ -25,7 +25,7 @@ data:
     email_attribute_path = email
     login_attribute_path = preffered_username
     name_attribute_path = name
-    auth_url = http://<GRAFANA>/realms/<REALM>/protocol/openid-connect/auth
-    token_url = http://<GRAFANA>/realms/<REALM>/protocol/openid-connect/token
-    api_url = http://<GRAFANA>/realms/<REALM>/protocol/openid-connect/userinfo
+    auth_url = http://<KEYCLOAK_HOSTNAME>/realms/<KEYCLOAK_REALM>/protocol/openid-connect/auth
+    token_url = http://<KEYCLOAK_HOSTNAME>/realms/<KEYCLOAK_REALM>/protocol/openid-connect/token
+    api_url = http://<KEYCLOAK_HOSTNAME>/realms/<KEYCLOAK_REALM>/protocol/openid-connect/userinfo
     role_attribute_path = contains(roles[*], 'grafana_admin') && 'Admin' || contains(roles[*], 'grafana_editor') && 'Editor' || contains(roles[*], 'grafana_viewer') && 'Viewer'
