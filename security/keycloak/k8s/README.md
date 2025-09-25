@@ -10,6 +10,8 @@ kubectl create namespace keycloak --dry-run=client -o yaml | kubectl apply -f - 
 kubectl -n keycloak port-forward deployment/keycloak 8080:8080
 ```
 - Access with web browser `http://localhost:8080`
+  username: `bootstrap-admin`
+  password: `qwerty`
 
 - Delete
 ```bash

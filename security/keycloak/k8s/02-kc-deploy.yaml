@@ -15,38 +15,48 @@ spec:
     spec:
       containers:
         - name: keycloak
-          image: quay.io/keycloak/keycloak:26.3.2
-          imagePullPolicy: Never
+          image: cnd-keycloak
+          imagePullPolicy: IfNotPresent
           env:
-            - name: KC_DB_URL
-              value: "jdbc:mysql://mysql:3306/keycloak"
-            - name: KC_DB
-              value: "mysql"
-            - name: KC_DB_USERNAME
-              value: "root"
-            - name: KC_DB_PASSWORD
-              value: "rootpass"
-            - name: KEYCLOAK_ADMIN
+            - name: KC_BOOTSTRAP_ADMIN_USERNAME
               value: "bootstrap-admin"
-            - name: KEYCLOAK_ADMIN_PASSWORD
+            - name: KC_BOOTSTRAP_ADMIN_PASSWORD
               value: "qwerty"
           ports:
-            - containerPort: 8080
+            - name: http
+              containerPort: 8080
+            - name: management
+              containerPort: 9000
           args:
             - "start"
-            - "--http-enabled=true"
-            - "--hostname=localhost"
-            - "--hostname-strict=true"
-            - "--bootstrap-admin-username=${KEYCLOAK_ADMIN}"
-            - "--bootstrap-admin-password=${KEYCLOAK_ADMIN_PASSWORD}"
-            # - "--optimized"
+            - "--optimized"
           resources:
             requests:
-              memory: "1Gi"
+              memory: "1700Mi"
               cpu: "500m"
             limits:
-              memory: "2Gi"
-              cpu: "1000m"
+              memory: "2000Mi"
+              cpu: "2000m"
+          readinessProbe:
+            httpGet:
+              path: /health/ready
+              port: 9000
+            initialDelaySeconds: 10
+            periodSeconds: 3
+          livenessProbe:
+            httpGet:
+              path: /health/live
+              port: 9000
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          volumeMounts:
+            - name: keycloak-config
+              mountPath: /opt/keycloak/conf/keycloak.conf
+              subPath: keycloak.conf
+      volumes:
+        - name: keycloak-config
+          configMap:
+            name: keycloak-config
 ---
 apiVersion: apps/v1
 kind: Deployment
