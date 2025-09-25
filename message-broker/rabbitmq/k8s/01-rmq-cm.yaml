@@ -1,0 +1,21 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: rabbitmq-config
+data:
+  rabbitmq.conf: |
+    auth_backends.1 = rabbit_auth_backend_oauth2
+
+    management.oauth_enabled = true
+    management.oauth_client_id = rabbitmq
+    management.oauth_client_secret = <KEYCLOAK_CLIENT_SECRET>
+    management.oauth_provider_url = http://<KEYCLOAK_HOSTNAME>/realms/<KEYCLOAK_REALM>
+    management.oauth_scopes = openid profile
+
+    auth_oauth2.resource_server_id = rabbitmq
+    auth_oauth2.preferred_username_claims.1 = preferred_username
+    auth_oauth2.additional_scopes_key = extra_scope
+    auth_oauth2.issuer = http://<KEYCLOAK_HOSTNAME>/realms/<KEYCLOAK_REALM>
+  enabled_plugins: |
+    [rabbitmq_management].
