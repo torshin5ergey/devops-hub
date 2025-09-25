@@ -5,7 +5,6 @@ LABEL author="Sergey Torshin @torshin5ergey" \
   description="Basic Keycloak"
 
 RUN /opt/keycloak/bin/kc.sh build \
-  --db=mysql \
   --features=token-exchange,admin-fine-grained-authz
 
 FROM keycloak/keycloak:26.3
